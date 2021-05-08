@@ -11,7 +11,7 @@ const routes = [
   },
   {
     path: '/',
-    component: () => import('@/components/layout/'),
+    component: () => import('@/components/tabbar/'),
     children: [
       {
         path: '',//默认子路由

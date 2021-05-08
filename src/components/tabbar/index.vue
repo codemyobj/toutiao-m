@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-container">
+  <div class="tab-bar">
     <!-- 子路由出口 -->
     <router-view />
 
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "LayoutIndex",
+  name: "tabBar",
   components: {},
   props: {},
   data() {
