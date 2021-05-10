@@ -22,7 +22,8 @@ const routes = [
         path: '/qa',//默认子路由
         name: 'qa',
         component: () => import('@/views/qa/')
-      }, {
+      },
+      {
         path: '/video',//默认子路由
         name: 'video',
         component: () => import('@/views/video/')
@@ -30,8 +31,18 @@ const routes = [
         path: '/my',//默认子路由
         name: 'my',
         component: () => import('@/views/my/')
-      }
+      },
     ]
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/search/')
+  },
+  {
+    path: '/article/:articleId',
+    name: 'article',
+    component: () => import('@/views/article')
   }
 ]
 
