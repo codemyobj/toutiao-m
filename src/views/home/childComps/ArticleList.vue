@@ -1,5 +1,5 @@
 <template>
-  <div class="article-list">
+  <div class="article-list" ref="article-list">
     <van-pull-refresh
       v-model="isRefreshLoading"
       :success-text="refreshSucess"
@@ -18,6 +18,8 @@
 import { getArticles } from "@/api/article";
 
 import ArticleItem from "@/components/articleItem";
+
+import { debounce } from "@/utils/debounce";
 
 export default {
   name: "ArticleList",
@@ -38,7 +40,18 @@ export default {
       timestamp: null, //获取下一页数据的时间戳
       isRefreshLoading: false,
       refreshSucess: "", //下拉刷新成功的提示文本
+      scrollTop: 0, //列表滚动到顶部的距离
     };
+  },
+  mounted() {
+    const articleList = this.$refs["article-list"];
+    articleList.onscroll = debounce(() => {
+      this.scrollTop = articleList.scrollTop;
+    }, 50);
+  },
+  activated() {
+    //从缓存中被激活 把记录到顶部的距离重新设置回去
+    this.$refs["article-list"].scrollTop = this.scrollTop;
   },
   methods: {
     async onLoad() {

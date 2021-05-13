@@ -5,7 +5,7 @@
       <van-cell center class="base-info" :border="false">
         <van-image class="avatar" slot="icon" round fit="cover" :src="currentUser.photo" />
         <div class="name" slot="title">{{currentUser.name}}</div>
-        <van-button class="edit-btn" size="small" round>编辑资料</van-button>
+        <van-button class="edit-btn" size="small" round to="/user/profile">编辑资料</van-button>
       </van-cell>
 
       <!-- 用户数据 -->
@@ -39,7 +39,14 @@
 
     <!-- 未登录展现方式 -->
     <div v-else class="not-login">
-      <div @click="$router.push('/login')">
+      <div
+        @click="$router.push({
+        name: 'login',
+        query: {
+          redirect: '/my'
+        }
+      })"
+      >
         <img class="mobile" src="~@/assets/img/shouji.png" alt />
       </div>
       <div class="text">登录 / 注册</div>
@@ -53,10 +60,10 @@
 
     <!-- 导航 -->
     <van-cell title="消息通知" is-link to="/" />
-    <van-cell class="mb-4" title="小智同学" is-link to="/" />
+
     <van-cell v-if="user" title="退出登录" class="logout-cell" @click="onLogout" />
   </div>
-</template>
+</template> 
 
 <script>
 import { mapState } from "vuex";

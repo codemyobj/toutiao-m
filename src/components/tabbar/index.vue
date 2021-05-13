@@ -1,7 +1,9 @@
 <template>
   <div class="tab-bar">
     <!-- 子路由出口 -->
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
 
     <!-- 底部导航栏 -->
     <van-tabbar v-model="active" route>
@@ -15,13 +17,16 @@
 
 <script>
 export default {
-  name: "tabBar",
+  name: "TabBar",
   components: {},
   props: {},
   data() {
     return {
       active: 0,
     };
+  },
+  mounted() {
+    this.$store.commit("addCachePage", "TabBar");
   },
 };
 </script>

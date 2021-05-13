@@ -38,3 +38,48 @@ export const getUserChannels = () => {
     // }
   })
 }
+
+// 关注
+export const addFollow = userId => {
+  return request({
+    url: '/app/v1_0/user/followings',
+    method: 'POST',
+    data: {
+      target: userId
+    }
+  })
+}
+
+// 取消关注
+export const cancelFollow = userId => {
+  return request({
+    url: `/app/v1_0/user/followings/${userId}`,
+    method: 'DELETE',
+  })
+}
+
+// 获取用户信息
+export const getUserProfile = () => {
+  return request({
+    url: '/app/v1_0/user/profile',
+    method: 'GET',
+  })
+}
+
+// 编辑用户资料
+export const editUserProfile = data => {
+  return request({
+    url: '/app/v1_0/user/profile',
+    method: 'PATCH',
+    data
+  })
+}
+
+// 编辑用户照片资料
+export const updateUserPhoto = data => {
+  return request({
+    url: '/app/v1_0/user/photo',
+    method: 'PATCH',
+    data
+  })
+}
